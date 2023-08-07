@@ -1,15 +1,11 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm'
+    alias(libs.plugins.kotlin.jvm)
     id 'java-gradle-plugin'
     id 'maven-publish'
 }
 
 group 'systems.danger'
 version '0.1-alpha'
-
-repositories {
-    mavenCentral()
-}
 
 gradlePlugin {
     plugins {
@@ -21,9 +17,8 @@ gradlePlugin {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testImplementation libs.jupiter.api
+    testRuntimeOnly libs.jupiter.engine
     implementation gradleApi()
 }
 

@@ -1,12 +1,12 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm'
-    id 'org.jetbrains.kotlin.plugin.serialization'
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.shadow)
     id 'maven-publish'
 }
 
-apply from: file('dependencies.gradle')
 apply from: file('version.gradle')
-apply plugin: 'kotlinx-serialization'
+apply from: file('../shadow.gradle')
 
 shadowJar {
     getArchiveBaseName().set('danger-kotlin')
@@ -39,4 +39,12 @@ publishing {
             from components.java
         }
     }
+}
+
+dependencies {
+    includeJar project(":danger-kotlin-sdk")
+    includeJar project(":danger-kotlin-kts")
+    includeJar(libs.kts)
+    includeRecursiveJar(libs.bundles.kotlinx)
+    testImplementation(libs.bundles.testing)
 }

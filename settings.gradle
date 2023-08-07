@@ -1,7 +1,17 @@
 pluginManagement {
     repositories {
         mavenCentral()
+        gradlePluginPortal()
         mavenLocal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        maven {
+            url = "https://kotlin.bintray.com/kotlinx/"
+        }
     }
 }
 

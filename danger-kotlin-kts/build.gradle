@@ -1,28 +1,18 @@
-buildscript {
-    repositories {
-        gradlePluginPortal()
-    }
-    dependencies {
-        classpath 'gradle.plugin.com.github.johnrengelman:shadow:7.1.2'
-    }
-}
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm'
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.shadow)
     id 'maven-publish'
 }
 
-apply plugin: 'com.github.johnrengelman.shadow'
-
-apply from: file('../dependencyVersions.gradle')
 apply from: file('version.gradle')
+apply from: file('../shadow.gradle')
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation "org.jetbrains.kotlin:kotlin-script-runtime:$versionKotlin"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2"
+    implementation libs.script
+    implementation libs.coroutines
 
-    includeJar "org.jetbrains.kotlin:kotlin-main-kts:$versionKotlin"
+    includeJar libs.kts
 }
 
 shadowJar {
