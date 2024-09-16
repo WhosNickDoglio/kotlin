@@ -1,19 +1,11 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm'
+    alias(libs.plugins.kotlin.jvm)
     id 'maven-publish'
     id 'signing'
 }
 
 apply from: file('version.gradle')
 apply from: file('maven-publish.gradle')
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-}
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
